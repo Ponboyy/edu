@@ -43,6 +43,28 @@ Route::post(
     TochkaWebhookController::class
 );
 
+Route::get('/setup-webhook', function () {
+    $token      = config('services.tochka.token');
+    $baseUrl    = config('services.tochka.base_url');
+    $clientId   = config('services.tochka.client_id');
+
+    $webhookUrl = 'https://tolkopoluybvi.ru/api/webhooks/tochka';
+
+    $events = [
+        'incoming_payment',
+        'acquiring_operation'
+    ];
+
+    $response = Http::withToken($token)
+        ->withHeaders(['Content-Type' => 'application/json'])
+        ->put("{$baseUrl}/webhook/v1.0/{$clientId}", [
+            'url' => $webhookUrl,
+            'webhooksList' => $events
+        ]);
+
+    return $response->json();
+});
+
 
 if (app()->isLocal()) {
     Route::post('/dev/login', DevAuthController::class);

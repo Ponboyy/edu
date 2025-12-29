@@ -36,8 +36,10 @@ return [
     ],
 
     'tochka' => [
-        'token' => env('TOCHKA_API_TOKEN'),
-        'create_payment_url' => env('TOCHKA_CREATE_PAYMENT_URL'),
+        'base_url'  => env('TOCHKA_BASE_URL', 'https://enter.tochka.com/uapi'),
+        'client_id' => env('TOCHKA_CLIENT_ID'),
+        'token'     => env('TOCHKA_ACCESS_TOKEN'),
+        'customer_code' => env('TOCHKA_CUSTOMER_CODE'),
     ],
 
 ];

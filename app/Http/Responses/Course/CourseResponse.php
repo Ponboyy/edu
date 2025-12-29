@@ -17,6 +17,7 @@ class CourseResponse
             'title'       => $course->title,
             'description' => $course->description,
             'price'       => $course->price,
+            'is_active'   => $course->is_active,
 
             'is_purchased' => $isPurchased,
 
@@ -26,7 +27,6 @@ class CourseResponse
                     'title'       => $lesson->title,
                     'description' => $lesson->description,
 
-                    // видео только если куплен курс
                     'has_video'   => $isPurchased && $lesson->video !== null,
                 ];
             }),
